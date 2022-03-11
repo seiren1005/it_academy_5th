@@ -1,9 +1,11 @@
 
 1. DESC : 특정 테이블에 어떤 칼럼이 있는지 조회하는 명령어 (Describe 약자)
+   
     DESC [table_name];
     
 
 2. SELECT : 데이터 조회
+   
     SELECT [column_name, 표현식] FROM [table_name, view_name];
     
     SELECT * FROM [table_name];
@@ -20,16 +22,19 @@
 
 
 3. 원하는 컬럼만 조회
+   
     SELECT [column_name1], [column_name2], ... FROM [table_name];
 
 
 4. 컬럼 외에 출력하기를 원하는 내용은 홀따움표 (') 로 묶어서 사용
+   
     SELECT [column_name], ... '내용' FROM [table_name];
 
     ORACLE에서 외따움표 (') 하나 출력하려면 -> '''' (외따움표 4개)
 
 
 5. 컬럼 별칭(Alias)
+   
     SELECT [column_name1] "별칭1", [column_name2] AS "별칭2", [column_name3] 별칭3..
     FROM student;
 
@@ -39,6 +44,7 @@
 
 
 6. DISTINCT : 데이터 중복을 제거
+   
     SELECT DISTINCT ... ;
     
     SELECT 문 바로 뒤에 사용
@@ -49,12 +55,14 @@
 
 
 7. || : 컬럼을 이어붙여서 출력
+   
     SELECT [column_name1] || [column_name2] ... || ... ;
     
     SELECT [column_name] || '내용' ... || ... ;
 
 
 8. OPERATION (연산) 가능
+   
     SELECT [column_name1], [column_name1] + 100 ...;
     
     [column_name1] + 100 이라는 컬럼은 없지만 자동으로 계산해서 연산 결과를 보여줌

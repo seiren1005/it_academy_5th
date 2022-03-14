@@ -1,0 +1,31 @@
+
+Hierarchical Query (계층형 쿼리)
+데이터를 조회할 때 상위와 하위 관계를 가진 데이터들이 존재
+
+홍길동 사원의 상사는 일지매 과장이다. 등의 경우 화면 출력시
+상하 관계를 표시하면 보기 편함
+
+
+SELECT LPAD(dname, level*6, '*') "DEPARTMENT"
+FROM dept2
+CONNECT BY PRIOR dcode = pdept
+START WITH dcode = 0001;
+
+level은 오라클에서 사용가능한 것으로 해당 데이터가 몇 번째 단계인지 나타냄 (0부터 시작)
+CONNECT BY 각 행동이 어떻게 연결되어야 할지 결정하는 부분
+START WITH 어디서부터 계층이 시작될지
+
+PRIOR dcode = pdept
+현재 데이터의 dcode = 이전 데이터의 pdept
+이전 데이터의 dcode = 이전전 데이터의 pdept
+
+dcode = PRIOR pdept
+START WITH dcode = 0001;
+dcode = 0001부터 시작
+현재 pdept = 이전 데이터의 dcode
+
+CONNECT BY dcode = PRIOR pdept
+START WITH dcode = 1011;
+dcode = 1011부터 시작
+현재 pdept = 이전 데이터의 dcode
+

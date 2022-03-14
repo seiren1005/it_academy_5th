@@ -83,7 +83,6 @@ WHERE hirdate = (
         );
 
 
-
 -- At emp2 TABLE, 전체 직원 중 과장 직급의 최소 연봉자보다 연봉이 높은 사람의
 -- 이름, 직급, 연봉 출력
 
@@ -131,4 +130,57 @@ WHERE (grade, height)
         GROUP BY grade
     );
 
-    
+
+-- At professor TABLE, 각 학과별로 입사일이 가장 오래된 교수의
+-- 이름, 교수번호, 학과명 출력
+
+-- 1) 각 학과별 입사일이 가장 오래된 교수
+-- 2) 학과번호에 맞는 학과명 출력
+
+SELECT p.name, p.profno, d.dname
+FROM professor p, department d
+WHERE p.deptno = d.deptno
+    AND (p.deptno, p.hiredate) 
+        IN(
+            SELECT deptno, min(hiredate)
+            FROM professor
+            GROUP BY deptno
+            ) 
+Order BY DNAME;
+
+
+-- At emp2 TABLE, 직급별로 해당 직급에서 최대 연봉을 받는 직원의
+-- 이름, 직급, 연봉 출력
+
+-- 1) 직급별 최대연봉
+-- 2) 최대 연봉과 맞는 이름, 직급, 연봉 출력
+
+SELECT name, position, pay
+FROM emp2
+WHERE (position, pay) 
+    IN(
+        SELECT position, max(pay)
+        FROM emp2
+        GROUP BY position 
+        )
+ORDER BY pay;
+
+
+-- At emp2 TABLE, 각 부서별 평균 연봉을 구하고 그 중에서 평균 연봉이 가장 적은
+-- 부서의 평균 연봉보다 적게받는 직원들의 부서명, 직원명, 연봉
+
+-- 1) 각 부서별 평균 연봉 중 최소값
+-- 2) 1)보다 작은 연봉의 직원 부서명, 직원명, 연봉 출력
+
+SELECT * FROM emp2;
+SELECT * FROM dept2;
+
+SELECT d.dname, e.name, e.pay*12
+FROM emp2 e, dept2 d
+WHERE e.deptno = d.dcode
+    AND pay < (
+        SELECT MIN(NVL(AVG(pay), 0))
+        FROM emp2
+        GROUP BY deptno 
+        );
+        

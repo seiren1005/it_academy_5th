@@ -1,0 +1,86 @@
+
+/* 초기화 */
+li {
+    list-style: none;
+}
+
+body {
+    width: 1060px;
+    margin: 0 auto;
+
+}
+
+#header {
+    text-align: centers;
+    font-size: 30px;
+    overflow: hidden;
+    color: green;
+}
+
+#logo {
+    float: left;
+    height: 100px;
+    margin-top: 30px;
+}
+
+#aside {
+    width: 200px;
+    float: left;
+}
+
+#section {
+    width: 860px;
+    float: left;
+}
+
+#main {
+    overflow: hidden;
+    /* hidden이나 scroll은 지정한 main의 크기를 넘어가는 요소들을 숨기거나 그만큼 스크롤을 부여하는 것인데
+    그렇게 하려면 요소의 크기를 측정해서 얼마나 차이가 나는 것인지 알아야 한다.
+    즉, 내부 요소의 높이를 측정하는 기능을 갖추고 있고 그렇기 때문에 main의 height를 따로 지정하지 않은
+    default 값일 경우 경우에는 내부 요소 중에서 height가 가장 큰 값을 따라 default 값이 변하게 됨 */
+}
+
+#navigation {
+    border: 1px solid black;
+}
+
+#navigation ul {
+    list-style: none;
+}
+
+#navigation ul li {
+    /* #navigation li라고 적어도 되지만 id=navigation 후손인 ul의 후손인 li라는 것을 알려주기 위해
+    ul를 생략하지 않고 써주는 것이 좋음 */
+    display: inline;
+    margin: 15px;
+    padding: 5px 10px;
+    border: 2px solid black;
+
+}
+
+a {
+    color: green;
+    text-decoration: none;
+    font-style: bold;
+    font-weight: 1000;
+}
+
+aside li:focus {
+    border: 1px;
+    background-color: coral;
+}
+
+/* #footer {
+    overflow: hidden;
+    height: 150px;
+}
+#footer > div {
+    float: left;
+    margin: 20px;
+} */
+#footer > div > * {
+    display: inline;
+    margin: ;
+}
+
